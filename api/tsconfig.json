@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "noEmit": true,
+    // "noEmit": true,
+    "outDir": "dist",
     "allowJs": true,
     "esModuleInterop": true,
     "target": "esnext",
