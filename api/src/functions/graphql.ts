@@ -14,7 +14,7 @@ export const handler = createGraphQLHandler({
   services,
   cors: {
     // 👈 setup your CORS configuration options
-    origin: '*',
+    origin: ['https://studio.apollographql.com/'],
     credentials: true,
   },
   onException: () => {
