@@ -9,7 +9,6 @@ env:
 jobs:
   check_schema:
     name: Check Schema with Apollo Studio
-    needs: [ get_subgraph_name ]
     runs-on: ubuntu-latest
     env:
       APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
