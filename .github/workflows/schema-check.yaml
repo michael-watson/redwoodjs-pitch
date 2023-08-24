@@ -1,0 +1,32 @@
+name: Redwood CI
+
+on: push
+
+env:
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+  TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+
+jobs:
+  check_schema:
+    name: Check Schema with Apollo Studio
+    needs: [ get_subgraph_name ]
+    runs-on: ubuntu-latest
+    env:
+      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+      APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      # install all the dependencies
+      - run: yarn install
+      - name: Generate schema.graphql
+        run: yarn rw-ge
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - if: env.APOLLO_KEY != '' &&  env.APOLLO_GRAPH_REF != ''
+        run: rover subgraph check ${{ secrets.APOLLO_GRAPH_REF }} --schema .redwood/schema.graphql --name redwoodjs
