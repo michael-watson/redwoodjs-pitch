@@ -22,7 +22,7 @@ jobs:
       # install all the dependencies
       - run: yarn install
       - name: Generate schema.graphql
-        run: yarn rw-ge
+        run: yarn rw-gen
       - name: Install Rover
         run: |
           curl -sSL https://rover.apollo.dev/nix/latest | sh
