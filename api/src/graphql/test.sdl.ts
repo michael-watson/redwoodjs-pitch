@@ -1,6 +1,6 @@
 export const schema = gql`
   type Query {
     hello: String @skipAuth
-    test_linter: String
+    test_linter: String @skipAuth
   }
 `
