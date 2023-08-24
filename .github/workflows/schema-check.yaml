@@ -1,4 +1,4 @@
-name: Check GraphQL Schema
+name: Lint GraphQL Schema
 
 on:
   push:

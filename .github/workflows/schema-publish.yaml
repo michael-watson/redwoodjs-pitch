@@ -1,4 +1,4 @@
-name: Deploy
+name: Publish schema.graphql to GraphOS
 on:
   push:
     branches:
@@ -6,15 +6,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy
-        run: echo "::warning file=.github/workflows/deploy.yaml,line=10,endLine=14,title=No Deploy step defined::Define your custom workflow for deploying your subgraph here."
-
   publish_schema:
     name: Publish new schema to Apollo Studio
-    needs: [ deploy ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
