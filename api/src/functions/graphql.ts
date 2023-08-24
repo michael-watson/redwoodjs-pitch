@@ -15,7 +15,6 @@ export const handler = createGraphQLHandler({
   cors: {
     // 👈 setup your CORS configuration options
     origin: ['https://studio.apollographql.com'],
-    credentials: true,
   },
   onException: () => {
     // Disconnect from your database with an unhandled exception.
